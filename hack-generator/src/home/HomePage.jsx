@@ -1,4 +1,6 @@
 import React from "react";
+import { scenario, tech, user } from "../data";
+import TitleFormat from "../sharedcomponents/TitleFormat";
 
 class HomePage extends React.PureComponent {
   constructor(props) {
@@ -10,10 +12,21 @@ class HomePage extends React.PureComponent {
     };
   }
 
+  componentDidMount() {
+    this.setState(() => {
+      console.log(scenario, tech, user);
+      return {
+        // scenario,
+        // tech,
+        // user
+      };
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
-        <div>as</div>
+        <TitleFormat></TitleFormat>
       </React.Fragment>
     );
   }
