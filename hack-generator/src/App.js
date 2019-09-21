@@ -1,15 +1,10 @@
 import React from "react";
-import "./App.css";
 import HomePage from "./home/HomePage";
 
 //add homepage here
-class App extends React.PureComponent {
+class App extends React.Component {
   render() {
-    return (
-      <div className="App">
-        <HomePage></HomePage>
-      </div>
-    );
+    return <HomePage></HomePage>;
   }
 }
 
