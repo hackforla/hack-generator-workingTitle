@@ -1,43 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { scenario, tech, user } from "../data";
 import TitleFormat from "../sharedcomponents/TitleFormat";
 import { Button, Container, Grid } from "semantic-ui-react";
 import UseJSONData from "./UseJSONData";
 
 const HomePage = () => {
+  const [data, setData] = useState({ scenario, tech, user });
   return (
     <Container fluid>
       <TitleFormat title="Welcome to Hack Generator"></TitleFormat>
       <hr />
-      {mainGrid()}
+      {mainGrid(data)}
       <hr />
-      {buttonRender()}
+      {buttonRender(data, setData)}
     </Container>
   );
 };
 
-const mainGrid = () => {
+const mainGrid = data => {
   return (
     <Grid columns={3} divided>
       <Grid.Row>
         <Grid.Column>
-          <UseJSONData dataCategory={scenario}></UseJSONData>
+          <UseJSONData dataCategory={data.scenario}></UseJSONData>
         </Grid.Column>
         <Grid.Column>
-          <UseJSONData dataCategory={tech}></UseJSONData>
+          <UseJSONData dataCategory={data.tech}></UseJSONData>
         </Grid.Column>
         <Grid.Column>
-          <UseJSONData dataCategory={user}></UseJSONData>
+          <UseJSONData dataCategory={data.user}></UseJSONData>
         </Grid.Column>
       </Grid.Row>
     </Grid>
   );
 };
 
-const buttonRender = () => {
+const buttonRender = (data, setData) => {
   return (
     <Grid.Row>
-      <Button size="massive" primary>
+      <Button size="massive" primary onClick={() => setData(!data)}>
         Change Values
       </Button>
     </Grid.Row>
