@@ -2,11 +2,11 @@ import React from "react";
 import { Header, Segment } from "semantic-ui-react";
 import "./titlePage.css";
 
-const TitleFormat = ({ props }) => {
+const TitleFormat = ({ title }) => {
   return (
     <Segment inverted>
       <Header textAlign="center" as="h1" inverted color="blue">
-        Welcome to Hack Generator
+        {title}
       </Header>
     </Segment>
   );
