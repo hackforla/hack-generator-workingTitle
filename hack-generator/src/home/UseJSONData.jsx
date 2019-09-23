@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const UseJSONData = ({ dataCategory }) => {
-  const [data, setData] = useState(dataCategory);
+  const [data] = useState(dataCategory);
   const getRandomInt = max => {
     return Math.floor(Math.random() * Math.floor(max));
   };
