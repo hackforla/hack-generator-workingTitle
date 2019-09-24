@@ -17,19 +17,21 @@ const HomePage = () => {
   );
 };
 
+const gridDisplay = dataType => {
+  return (
+    <Grid.Column>
+      <UseJSONData dataCategory={dataType}></UseJSONData>
+    </Grid.Column>
+  );
+};
+
 const mainGrid = data => {
   return (
     <Grid columns={3} divided>
       <Grid.Row>
-        <Grid.Column>
-          <UseJSONData dataCategory={data.scenario}></UseJSONData>
-        </Grid.Column>
-        <Grid.Column>
-          <UseJSONData dataCategory={data.tech}></UseJSONData>
-        </Grid.Column>
-        <Grid.Column>
-          <UseJSONData dataCategory={data.user}></UseJSONData>
-        </Grid.Column>
+        {gridDisplay(data.scenario)}
+        {gridDisplay(data.tech)}
+        {gridDisplay(data.user)}
       </Grid.Row>
     </Grid>
   );
