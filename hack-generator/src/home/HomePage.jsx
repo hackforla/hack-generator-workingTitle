@@ -1,59 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { scenario, tech, user } from "../data";
 import TitleFormat from "../sharedcomponents/TitleFormat";
-import { Container, Grid } from "semantic-ui-react";
+import { Button, Container, Grid } from "semantic-ui-react";
+import UseJSONData from "./UseJSONData";
 
-class HomePage extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      scenario: [],
-      tech: [],
-      user: []
-    };
-  }
+const HomePage = () => {
+  const [data, setData] = useState({ scenario, tech, user });
+  return (
+    <Container fluid>
+      <TitleFormat title="Welcome to Hack Generator"></TitleFormat>
+      <hr />
+      {mainGrid(data)}
+      <hr />
+      {buttonRender(data, setData)}
+    </Container>
+  );
+};
 
-  componentDidMount() {
-    this.setState(() => {
-      return {
-        scenario,
-        tech,
-        user
-      };
-    });
-  }
+const gridDisplay = dataType => {
+  return (
+    <Grid.Column>
+      <UseJSONData dataCategory={dataType}></UseJSONData>
+    </Grid.Column>
+  );
+};
 
-  mapPieces = gamePiece => {
-    return;
-  };
+const mainGrid = data => {
+  return (
+    <Grid columns={3} divided>
+      <Grid.Row>
+        {gridDisplay(data.scenario)}
+        {gridDisplay(data.tech)}
+        {gridDisplay(data.user)}
+      </Grid.Row>
+    </Grid>
+  );
+};
 
-  getRandomInt = max => {
-    return Math.floor(Math.random() * Math.floor(max));
-  };
-
-  render() {
-    console.log(scenario);
-    return (
-      <Container fluid>
-        <TitleFormat></TitleFormat>
-        <hr />
-        <Grid columns={3} divided>
-          <Grid.Row>
-            <Grid.Column>
-              {Object.values(scenario[this.getRandomInt(scenario.length)])}
-            </Grid.Column>
-            <Grid.Column>
-              {Object.values(tech[this.getRandomInt(tech.length)])}
-            </Grid.Column>
-            <Grid.Column>
-              {Object.values(user[this.getRandomInt(user.length)])}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        <hr />
-      </Container>
-    );
-  }
-}
+const buttonRender = (data, setData) => {
+  return (
+    <Grid.Row>
+      <Button size="massive" primary onClick={() => setData(!data)}>
+        Change Values
+      </Button>
+    </Grid.Row>
+  );
+};
 
 export default HomePage;
