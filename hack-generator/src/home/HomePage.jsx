@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { scenario, tech, user } from "../data";
 import TitleFormat from "../sharedcomponents/TitleFormat";
-import { Button, Container, Grid } from "semantic-ui-react";
+import { Button, Container, Grid, Icon } from "semantic-ui-react";
 import UseJSONData from "./UseJSONData";
 
 const HomePage = () => {
@@ -17,9 +17,10 @@ const HomePage = () => {
   );
 };
 
-const gridDisplay = dataType => {
+const gridDisplayWithIcons = (dataType, iconName) => {
   return (
     <Grid.Column>
+      <Icon name={iconName} size="massive" />
       <UseJSONData dataCategory={dataType}></UseJSONData>
     </Grid.Column>
   );
@@ -29,9 +30,9 @@ const mainGrid = data => {
   return (
     <Grid columns={3} divided>
       <Grid.Row>
-        {gridDisplay(data.scenario)}
-        {gridDisplay(data.tech)}
-        {gridDisplay(data.user)}
+        {gridDisplayWithIcons(data.scenario, "question circle")}
+        {gridDisplayWithIcons(data.tech, "newspaper")}
+        {gridDisplayWithIcons(data.user, "user")}
       </Grid.Row>
     </Grid>
   );
